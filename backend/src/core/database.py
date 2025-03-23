@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.orm import DeclarativeBase
 
-from database import settings
+from .config import settings
 
 
 class Base(DeclarativeBase):
@@ -17,7 +17,11 @@ class Base(DeclarativeBase):
 class Database:
     def __init__(self, url: str):
         self.engine = create_async_engine(url=url)
-        self.session_factory = async_sessionmaker(bind=self.engine)
+        self.session_factory = async_sessionmaker(
+            bind=self.engine,
+            autoflush=False,
+            expire_on_commit=False
+        )
 
     async def async_session(self) -> AsyncGenerator[AsyncSession, None]:
         async with self.session_factory() as session:
