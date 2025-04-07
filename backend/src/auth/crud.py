@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models import User
+from src.models import User
 from .schemas import UserIn
 from .security import get_password_hash
 

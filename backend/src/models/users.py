@@ -32,6 +32,10 @@ class User(Base):
 
     role: Mapped["Role"] = relationship(back_populates="users")
 
+    @property
+    def is_admin(self) -> bool:
+        return self.role.name == "admin"
+
 
 class Role(Base):
     __tablename__ = "roles"

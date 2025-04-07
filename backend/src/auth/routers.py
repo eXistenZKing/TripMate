@@ -4,10 +4,10 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
 from datetime import timedelta
 
+from .dependencies import get_current_active_user
 from .schemas import UserIn, UserOut, Token
-from .crud import (
-    create_user,
-    get_current_active_user,
+from .crud import create_user
+from .security import (
     get_user,
     authenticate_user,
     create_access_token
