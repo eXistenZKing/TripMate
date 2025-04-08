@@ -16,6 +16,7 @@ class Country(Base):
     currency = Column(String(50))
     language = Column(String(100))
     flag_url = Column(String(255))
+    map_url = Column(String(255))
 
     cities = relationship("City", back_populates="country")
     attractions = relationship("Attraction", back_populates="country")
@@ -31,6 +32,7 @@ class City(Base):
     population = Column(Integer)
     latitude = Column(String(20))
     longitude = Column(String(20))
+    map_url = Column(String(255))
 
     country = relationship("Country", back_populates="cities")
     attractions = relationship("Attraction", back_populates="city")
